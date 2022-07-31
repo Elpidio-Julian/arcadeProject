@@ -65,6 +65,13 @@ body > * {
   margin-left: 2rem;
 }
 
+.x {
+  background-color: yellow;
+}
+
+.o {
+  background-color: blue;
+}
 /* 
 dark cyan #1ad8e5
 light cyan #a5f0f5

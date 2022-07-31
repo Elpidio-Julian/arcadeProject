@@ -3,8 +3,19 @@ const board = document.getElementById('board')
 
 const restart = document.getElementsByClassName('restart')[0]
 
+const submitBtn = document.getElementById('submitbtn')
+
+const playerX = document.getElementById('playerXName')
+
+const playerO = document.getElementById('playerOName')
+
+const playXName = document.getElementById('playerX')
+
+const playOName = document.getElementById('playerO')
+
 const gameState = {}
 
+const menu = document.getElementsByTagName('menu')[0]
 
 function resetInitialState() {
     gameState.players = ['x', 'o']
@@ -30,6 +41,17 @@ function resetInitialState() {
         }
         // run game check
         gameCheck()
+    })
+    welcome()
+}
+
+function welcome() {
+    menu.style.display = 'block'
+    submitBtn.addEventListener('click', function(event){
+        event.preventDefault()
+        playXName.innerText = `PlayerX: ${playerX.value}`
+        playOName.innerText = `PlayerO: ${playerO.value}`
+        menu.style.display = 'none'
     })
 }
 

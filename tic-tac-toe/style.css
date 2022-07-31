@@ -78,3 +78,16 @@ light salmon #f39b95
 .o::after{
   content: '\25EF';
 }
+
+#names {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+menu {
+  position: fixed;
+  background-color: #a5f0f5;
+  z-index: 2;
+  height: 50vh;
+  width: 25vw;
+}

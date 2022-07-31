@@ -12,6 +12,7 @@ const gameState = {
     ]
 }
 
+
 function resetInitialState() {
     gameState.players = ['x', 'o']
     gameState.board = [
@@ -19,7 +20,7 @@ function resetInitialState() {
         ['u', 'u', 'u'],
         ['u', 'u', 'u']
     ]
-    board.addEventListener('click', function click(event){
+    board.addEventListener('click', click=function(event){
         let position = event.target.getAttribute('data-coordinates').split(',')
         const [y, x] = position
         if (event.target.classList.length > 1) {
@@ -31,7 +32,6 @@ function resetInitialState() {
             winCheck(position, gameState.players[0])
             let changePlayer = gameState.players.shift()
             gameState.players.push(changePlayer)
-            console.log(position)
         }
         // run game check
         gameCheck()
@@ -40,12 +40,14 @@ function resetInitialState() {
 
 function clearHTMLboard() {
     const xElem = document.getElementsByClassName('x')
+    console.log(xElem)
     const oElem = document.getElementsByClassName('o')
+    console.log(oElem)
     for (let i = 0; i < xElem.length; i++) {
         xElem[i].classList.remove("x")
     }
-    for (let i = 0; i < xElem.length; i++) {
-        oElem[i].classList.remove("o")
+    for (let b = 0; b < oElem.length; b++) {
+        oElem[b].classList.remove("o")
     }
 }
 
@@ -59,18 +61,21 @@ function gameCheck() {
             }
         }
     }
-    console.log(nullPresent)
     if(nullPresent === 0){
         showRestart()
     }
 }
 restart.addEventListener('click', function(event){
-    resetInitialState()
     clearHTMLboard()
+    clearHTMLboard()
+    clearHTMLboard()
+    clearHTMLboard()
+    resetInitialState()
+    restart.style.display = 'none'
 })
 function showRestart() {
     restart.style.display = 'block'
-    board.removeEventListener('click', click)
+    board.removeEventListener('click', click);
 }
 
 function winCheck(position, player) {

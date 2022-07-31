@@ -3,14 +3,7 @@ const board = document.getElementById('board')
 
 const restart = document.getElementsByClassName('restart')[0]
 
-const gameState = {
-    players: ['x', 'o'],
-    board: [
-        ['u', 'u', 'u'],
-        ['u', 'u', 'u'],
-        ['u', 'u', 'u']
-    ]
-}
+const gameState = {}
 
 
 function resetInitialState() {
@@ -20,6 +13,8 @@ function resetInitialState() {
         ['u', 'u', 'u'],
         ['u', 'u', 'u']
     ]
+    gameState.playerXName = "";
+    gameState.playerOName = "";
     board.addEventListener('click', click=function(event){
         let position = event.target.getAttribute('data-coordinates').split(',')
         const [y, x] = position

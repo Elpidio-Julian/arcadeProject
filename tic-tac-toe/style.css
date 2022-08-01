@@ -87,7 +87,22 @@ light salmon #f39b95
 menu {
   position: fixed;
   background-color: #a5f0f5;
-  z-index: 2;
+  z-index: 1;
   height: 50vh;
   width: 25vw;
+}
+#instructions {
+  text-align: center;
+  margin-right: 2vw;
+}
+#submitbtn {
+  margin: auto;
+}
+form {
+  background-color: #a5f0f5;
+}
+.winSection {
+  position: fixed;
+  z-index: 10;
+  background-color: #a5f0f5;
 }

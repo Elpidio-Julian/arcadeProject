@@ -13,24 +13,25 @@ const playXName = document.getElementById('playerX')
 
 const playOName = document.getElementById('playerO')
 
+const winMsg = document.getElementsByClassName('winSection')[0]
+
 const gameState = {}
 
 const menu = document.getElementsByTagName('menu')[0]
 
 function resetInitialState() {
+    winMsg.style.display = 'none'
     gameState.players = ['x', 'o']
     gameState.board = [
         ['u', 'u', 'u'],
         ['u', 'u', 'u'],
         ['u', 'u', 'u']
     ]
-    gameState.playerXName = "";
-    gameState.playerOName = "";
     board.addEventListener('click', click=function(event){
         let position = event.target.getAttribute('data-coordinates').split(',')
         const [y, x] = position
         if (event.target.classList.length > 1) {
-    
+            
         } else {
             event.target.classList.add(gameState.players[0])
             gameState.board[y][x] =  gameState.players[0]
@@ -49,6 +50,8 @@ function welcome() {
     menu.style.display = 'block'
     submitBtn.addEventListener('click', function(event){
         event.preventDefault()
+        gameState.playerXName = playerX.value;
+        gameState.playerOName = playerO.value;
         playXName.innerText = `PlayerX: ${playerX.value}`
         playOName.innerText = `PlayerO: ${playerO.value}`
         menu.style.display = 'none'
@@ -80,6 +83,8 @@ function gameCheck() {
     }
     if(nullPresent === 0){
         showRestart()
+        winMsg.firstElementChild.innerText = `There has been a draw!`
+        winMsg.style.display = 'block'
     }
 }
 restart.addEventListener('click', function(event){
@@ -96,41 +101,45 @@ function showRestart() {
 }
 
 function winCheck(position, player) {
-    if(verticalCheck(position) || horizontalCheck(position) || diagCheck()) {
-        console.log(`player ${player} wins`)
+    if(verticalCheck(position)[0] || horizontalCheck(position)[0] || diagCheck()[0]) {
+        let winner = document.querySelector(`span[playername="${player}"]`)
+        console.log(winner.innerText)
+        winMsg.firstElementChild.innerText = `${winner.innerText} wins!`
+        winMsg.style.display = 'block'
         showRestart()
     }
 
 }
 
 
+
 function verticalCheck(position) {
     const [y, x] = position
     if(gameState.board[0][x] === gameState.players[0] && gameState.board[1][x] === gameState.players[0] && gameState.board[2][x] === gameState.players[0]) {
         console.log('vertical win')
-        return true
+        return [true, 'vertical win']
     } else {
-        return false
+        return [false]
     }
 }
 function horizontalCheck(position) {
     const [y, x] = position
     if(gameState.board[y][0] === gameState.players[0] && gameState.board[y][1] === gameState.players[0] && gameState.board[y][2] === gameState.players[0]) {
         console.log('horizontal win')
-        return true
+        return [true, 'horizontal win']
     } else {
-        return false
+        return [false]
     }
 }
 function diagCheck() {
     if(gameState.board[0][0] === gameState.players[0] && gameState.board[1][1] === gameState.players[0] && gameState.board[2][2] === gameState.players[0]) {
         console.log('diagonal win')
-        return true
+        return [true, 'diagonal win']
     } else if(gameState.board[0][2] === gameState.players[0] && gameState.board[1][1] === gameState.players[0] && gameState.board[2][0] === gameState.players[0]) {
         console.log('diagonal win')
-        return true
+        return [true, 'diagonal win']
     } else {
-        return false
+        return [false]
     }
 }
 

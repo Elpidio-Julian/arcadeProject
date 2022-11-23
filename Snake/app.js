@@ -129,7 +129,9 @@ function clearHTMLboard() {
     const appleElem = document.getElementsByClassName("apple")[0]
     const snakeElems = document.getElementsByClassName("snake")
 
-    appleElem.classList.remove("apple")
+    if(appleElem) {
+        appleElem.classList.remove("apple")
+    }
 
     for (let i = 0; i < snakeElems.length; i++) {
         snakeElems[i].classList.remove("snake")
